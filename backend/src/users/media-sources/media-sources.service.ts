@@ -103,7 +103,13 @@ export class MediaSourcesService {
           settings: sourceDto.pluginSettings,
         });
         valid = validationResponse.isValid;
+        if (
+          validationResponse.settings &&
+          Object.keys(validationResponse.settings).length > 0
+        ) {
         source.pluginSettings = validationResponse.settings;
+      } else {
+        source.pluginSettings = sourceDto.pluginSettings;
       } else {
         source.pluginSettings = sourceDto.pluginSettings;
       }
